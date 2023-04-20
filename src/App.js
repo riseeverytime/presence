@@ -1,6 +1,10 @@
 import { useState } from 'react';
 
+import Presence from './components/presence/presence';
+
 import './App.css';
+
+const serviceUrl = 'ws://localhost/ws';
 
 function App() {
   const [currentUser, setCurrentUser] = useState('Anthony Hazuka');
@@ -64,6 +68,39 @@ function App() {
           />
         </div>
       </form>
+      <div className='flex'>
+        <h2>Channel 1</h2>
+        <Presence
+          channel='channel 1'
+          gap={gap}
+          currentUser={currentUser}
+          serviceUrl={serviceUrl}
+          maxAvatarCount={maxAvatarCount}
+          avatarSize={avatarSize}
+        />
+      </div>
+      <div className='flex'>
+        <h2>Channel 2</h2>
+        <Presence
+          channel='channel 2'
+          gap={gap}
+          currentUser={currentUser}
+          serviceUrl={serviceUrl}
+          maxAvatarCount={maxAvatarCount}
+          avatarSize={avatarSize}
+        />
+      </div>
+      <div className='flex'>
+        <h2>Channel 1</h2>
+        <Presence
+          channel='channel 1'
+          gap={gap}
+          currentUser={currentUser}
+          serviceUrl={serviceUrl}
+          maxAvatarCount={maxAvatarCount}
+          avatarSize={avatarSize}
+        />
+      </div>
     </div>
   );
 }
