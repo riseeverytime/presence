@@ -1,70 +1,63 @@
-# Getting Started with Create React App
+# React Chat Room Presence Component
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is a React component that shows the presence of users in a chat room. When a user joins or leaves the chat room, this component can be used to show a list of all the users who are currently online.
 
-## Available Scripts
+## Usage
 
-In the project directory, you can run:
+To use this component, first import it into your React component:
 
-### `npm start`
+```javascript
+import Presence from 'components/presence';
+```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Then, run a backend mock server that will handle web socket communication:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+```bash
+npm run server
+```
 
-### `npm test`
+Finally, use the `Presence` component to display the list of users in a specific channel:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```javascript
+<Presence channel="channel 1" serviceUrl="ws://localhost/ws" />
+```
 
-### `npm run build`
+You can also pass in additional props to customize the appearance of the component:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```javascript
+<Presence
+  channel="channel 1"
+  gap={-5}
+  currentUser="Carolyn"
+  serviceUrl="ws://localhost/ws"
+  maxAvatarCount={5}
+  avatarSize={24}
+/>
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Here are the available props:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- `channel` (required): The name or ID of the chat room to monitor.
+- `serviceUrl` (required): The URL of the chat service, used to fetch the status of online users.
+- `currentUser`: The username of the current user. Used to indicate the current user in the list of online users.
+- `maxAvatarCount`: The maximum number of avatars to display at once. Online users beyond this limit will be shown as "+X more" where X is the count of online users minus `maxAvatarCount`. Defaults to 3.
+- `gap`: The gap between the avatars, in pixels. Defaults to 10.
+- `avatarSize`: The size of the user avatar in pixels. Only applies if `showAvatar` is `true`. Defaults to `36`.
 
-### `npm run eject`
+# Future
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Some of the upcoming features that we are planning to integrate into this component are:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- Support for user statuses (online / offline / away, etc.)
+- A customizable tooltip that will show more detailed user information (such as the user's bio or contact information)
+- Integration with video chat, allowing users to easily start a video call with an online user
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+We are continuously improving and adding new features to this component. If you have any ideas or suggestions for features you would like to see, please let us know by opening an issue on our GitHub repository.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Contributing
 
-## Learn More
+We welcome contributions to this project! To get started, clone the repository and run `npm install` to install the dependencies.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Then, you can run the development server with `npm start` to start a local development environment. You can run mock backend server with `npm run server`, and build the component for production with `npm run build`.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+When contributing code, please follow the existing coding style before submitting a pull request.
